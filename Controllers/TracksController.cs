@@ -10,7 +10,7 @@ namespace MusicWebAPI.Controllers
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-
+        [HttpPost("add")]
         public async Task<IActionResult> AddTrack([FromBody] TrackDto trackDto)
         {
             if (trackDto == null)
@@ -26,14 +26,14 @@ namespace MusicWebAPI.Controllers
                 Genre = "Unknown", // Default value, can be modified later
                 ReleaseDate = DateTime.UtcNow // Set to current date and time
             };
-            _context.Tracks.Add(track);
+            _context.Track.Add(track);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetTrackById), new { id = track.Id }, track);
         }
-
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetTrackById(int id)
         {
-            var track = await _context.Tracks.FindAsync(id);
+            var track = await _context.Track.FindAsync(id);
 
             if (track == null)
             {

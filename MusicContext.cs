@@ -6,7 +6,7 @@ namespace MusicWebAPI
     {
         public MusicContext(DbContextOptions<MusicContext> options) : base(options)
         {}
-        public DbSet<Track> Tracks { get; set; } // DbSet for Track entity
+        public DbSet<Track> Track { get; set; } // DbSet for Track entity
     }
 
     

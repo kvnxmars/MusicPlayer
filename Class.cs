@@ -1,5 +1,8 @@
-﻿namespace MusicWebAPI
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MusicWebAPI
 {
+    [Table("Track")]
     public class Track
     {
         public int Id { get; set; }
