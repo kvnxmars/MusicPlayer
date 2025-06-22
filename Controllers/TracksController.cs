@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MusicWebAPI.Controllers
 {
@@ -41,6 +42,30 @@ namespace MusicWebAPI.Controllers
             }
 
             return Ok(track);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllTracks()
+        {
+            var tracks = await _context.Track.ToListAsync();
+            if (tracks == null || !tracks.Any())
+            {
+                return NotFound("No tracks found.");
+            }
+            return Ok(tracks);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTrack(int id)
+        {
+            var track = await _context.Track.FindAsync(id);
+            if (track == null)
+            {
+                return NotFound("Track not found.");
+            }
+            _context.Track.Remove(track);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
     //private readonly TracksController ()
