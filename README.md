@@ -1,1 +1,1 @@
-# MusicWebAPI
+# MusicPlayerWebAPI
