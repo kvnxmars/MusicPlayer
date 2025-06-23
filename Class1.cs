@@ -14,6 +14,9 @@ namespace MusicWebAPI
         [Range(1, int.MaxValue, ErrorMessage = "Duration must be greater than zero.")]
         public int Duration { get; set; } // Duration in seconds
 
+        [Required(ErrorMessage = "Genre is reuquired!")]
+        public string Genre { get; set; }
+
     }
     
 }

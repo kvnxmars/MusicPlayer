@@ -14,6 +14,9 @@ namespace MusicWebAPI.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddTrack([FromBody] TrackDto trackDto)
         {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
             if (trackDto == null)
             {
                 return BadRequest("Track data is required.");
@@ -24,7 +27,7 @@ namespace MusicWebAPI.Controllers
                 Artist = trackDto.Artist,
                 Album = trackDto.Album,
                 Duration = trackDto.Duration,
-                Genre = "Unknown", // Default value, can be modified later
+                Genre = trackDto.Genre, // Default value, can be modified later
                 ReleaseDate = DateTime.UtcNow // Set to current date and time
             };
             _context.Track.Add(track);
