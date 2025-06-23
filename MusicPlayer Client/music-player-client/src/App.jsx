@@ -7,7 +7,7 @@ function App() {
   const [tracks, setTracks] = useState([])
 
   useEffect(() => {
-    fetch("https://localhost:7233/api/tracks")
+    fetch("https://localhost:7233/api/track")
       .then(response => response.json())
       .then(data => setTracks(data))
       .catch(error => console.error("Error fetching tracks:", error))
