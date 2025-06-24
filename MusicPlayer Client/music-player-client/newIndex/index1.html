@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Player</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .track-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .track-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+    .track-card:hover {
+      transform: scale(1.03);
+    }
+    .cover {
+      background: #21262d;
+      height: 150px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .track-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .artist-name {
+      font-size: 0.95rem;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎧 My Music Tracks</h1>
+  <div class="track-grid" id="track-grid">
+    <!-- Cards will go here -->
+  </div>
+
+  <script>
+    fetch("https://localhost:7233/api/tracks")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("track-grid");
+        container.innerHTML = "";
+        data.forEach(track => {
+          const div = document.createElement("div");
+          div.className = "track-card";
+          div.innerHTML = `
+            <div class="cover"></div>
+            <div class="track-name">${track.name}</div>
+            <div class="artist-name">by ${track.artist}</div>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => {
+        document.getElementById("track-grid").innerHTML = `<div>Error loading tracks</div>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
