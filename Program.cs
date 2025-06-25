@@ -16,7 +16,7 @@ builder.Services.AddDbContext<MusicContext>(options => options.UseNpgsql(builder
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:5173")
+        policy => policy.WithOrigins("https://localhost:7233")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
