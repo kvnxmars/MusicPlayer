@@ -1,4 +1,6 @@
 #Music API: The Heart of My Music Player App
+
+
 🌟 Overview
 This project is the robust RESTful API serving as the core backend for my aspiring music player application (envision Spotify, but built by me!). It's designed to efficiently store and manage music-related data, laying the critical groundwork for a full-featured music streaming experience.
 
